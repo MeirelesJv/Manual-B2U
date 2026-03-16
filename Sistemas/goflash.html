@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QaDocs — Goflash</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* accent override: azul */
+      :root {
+        --sys-accent: #4f8ef7;
+      }
+      .sidebar-item.active {
+        background: rgba(79, 142, 247, 0.06);
+        border-left-color: #4f8ef7;
+        color: #4f8ef7;
+      }
+      .sidebar-item.active .item-dot {
+        background: #4f8ef7;
+      }
+      .page h1 .h1-tag {
+        color: #4f8ef7;
+        background: rgba(79, 142, 247, 0.1);
+        border-color: rgba(79, 142, 247, 0.2);
+      }
+      .step-num {
+        color: #4f8ef7;
+      }
+      .page h2::before {
+        background: #4f8ef7;
+      }
+      .code-header .lang {
+        color: #4f8ef7;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="manual">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <a class="topbar-logo" href="../index.html">
+          <div class="logo-icon">
+            <img src="../Files/goflashicone.ico" alt="Goflash" />
+          </div>
+          <span class="logo-text">Goflash</span>
+        </a>
+        <div class="topbar-nav">
+          <span>QaDocs</span>
+          <span class="sep">/</span>
+          <span class="crumb" id="topbar-crumb">Como Instalar</span>
+        </div>
+        <a class="topbar-back" href="../index.html">← Sistemas</a>
+      </div>
+
+      <div class="manual-body">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="sidebar-section open" id="sec-install">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('install')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">📦</span>
+              <span class="section-label">Instalação</span>
+              <span class="section-count">2</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item active"
+                onclick="showPage('como-instalar', this)"
+                data-label="Como Instalar"
+              >
+                <span class="item-dot"></span>Como Instalar
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('como-usar', this)"
+                data-label="Como Usar"
+              >
+                <span class="item-dot"></span>Como Usar
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section open" id="sec-config">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('config')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">🔧</span>
+              <span class="section-label">Configuração</span>
+              <span class="section-count">1</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item"
+                onclick="showPage('variaveis', this)"
+                data-label="Variáveis de Ambiente"
+              >
+                <span class="item-dot"></span>Variáveis de Ambiente
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section open" id="sec-tests">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('tests')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">🧪</span>
+              <span class="section-label">Testes</span>
+              <span class="section-count">4</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item"
+                onclick="showPage('visao-geral-testes', this)"
+                data-label="Visão Geral"
+              >
+                <span class="item-dot"></span>Visão Geral
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-login', this)"
+                data-label="Teste: Login"
+              >
+                <span class="item-dot"></span>Teste: Login
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-venda', this)"
+                data-label="Teste: Venda"
+              >
+                <span class="item-dot"></span>Teste: Venda
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-troca', this)"
+                data-label="Teste: Troca"
+              >
+                <span class="item-dot"></span>Teste: Troca
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="content">
+          <!-- ── Como Instalar ── -->
+          <div class="page active" id="page-como-instalar">
+            <h1>Como Instalar <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Guia de instalação passo a passo para o ambiente local.
+            </p>
+
+            <h2>Pré-requisitos</h2>
+            <p>
+              Antes de iniciar, verifique se as dependências abaixo estão
+              instaladas na sua máquina:
+            </p>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Ferramenta</th>
+                  <th>Versão usada</th>
+                  <th>Verificar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <code
+                      ><a href="https://nodejs.org/en" target="_blank"
+                        >Node.js</a
+                      ></code
+                    >
+                  </td>
+                  <td>v22.20.0</td>
+                  <td><code>node -v</code></td>
+                </tr>
+                <tr>
+                  <td><code>npm</code></td>
+                  <td>10.9.3</td>
+                  <td><code>npm -v</code></td>
+                </tr>
+                <tr>
+                  <td><code>Playwright</code></td>
+                  <td>1.58.2</td>
+                  <td><code>package.json</code></td>
+                </tr>
+                <tr>
+                  <td><code>Playwright Test for VSCode</code></td>
+                  <td>~</td>
+                  <td><code>Extensão VsCode</code></td>
+                </tr>
+                <tr>
+                  >
+                  <td>
+                    <code
+                      ><a href="https://download.b2u.com.br/" target="_blank"
+                        >Goflash POS</a
+                      ></code
+                    >
+                  </td>
+                  <td>v1.74.09</td>
+                  <td><code>DLL</code></td>
+                </tr>
+                <tr>
+                  <td>
+                    <code
+                      ><a href="https://download.b2u.com.br/" target="_blank"
+                        >Trayservice</a
+                      ></code
+                    >
+                  </td>
+                  <td>v1.74.09</td>
+                  <td><code>DLL</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Passo a passo</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>Clone ou baixe o repositório</h4>
+                  <p>
+                    Faça o clone ou baixe o repositorio onde possue os testes
+                    para utilizar no Goflash
+                  </p>
+                </div>
+              </div>
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="lang">BASH 1</span>
+                  <button
+                    class="copy-btn"
+                    onclick="copyCode(this, 'clone-cmd-Passo1')"
+                  >
+                    copiar
+                  </button>
+                </div>
+                <pre
+                  id="clone-cmd-Passo1"
+                ><span class="cmt"># 1. Clone o repositório</span>
+<span class="fn">git</span> clone https://github.com/MeirelesJv/B2U-Testes.git
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>Instale as dependências</h4>
+                  <p>Execute o gerenciador de pacotes na raiz do projeto.</p>
+                </div>
+              </div>
+              <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH 2</span>
+                <button class="copy-btn" onclick="copyCode(this, 'clone-cmd-passo2')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="clone-cmd-passo2"
+              >
+<span class="cmt"># 2. Instale as dependências</span>
+<span class="fn">npm</span> install
+            </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h4>Configure as variáveis de ambiente</h4>
+                  <p>
+                    Copie o <code>.env.example</code> para <code>.env</code> e
+                    preencha os valores.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span>
+                <button class="copy-btn" onclick="copyCode(this, 'clone-cmd')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="clone-cmd"
+              ><span class="cmt"># 1. Clone o repositório</span>
+<span class="fn">git</span> clone https://github.com/b2u/goflash.git
+<span class="fn">cd</span> goflash
+
+<span class="cmt"># 2. Instale as dependências</span>
+<span class="fn">npm</span> install
+
+<span class="cmt"># 3. Copie o arquivo de ambiente</span>
+<span class="fn">cp</span> .env.example .env
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                O servidor iniciará na porta <code>3000</code> por padrão. Para
+                alterar, defina <code>PORT=XXXX</code> no arquivo
+                <code>.env</code>.
+              </p>
+            </div>
+            <div class="callout warning">
+              <span class="callout-icon">⚠️</span>
+              <p>
+                Não se esqueça de preencher todo o <code>.env</code> alem de não se esquecer de colocar o ambiente todo em homolog
+              </p>
+            </div>
+          </div>
+
+          <!-- ── Como Usar ── -->
+          <div class="page" id="page-como-usar">
+            <h1>Como Usar <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Fluxos básicos e avançados para testar o Goflash com o Playwright
+            </p>
+
+            <h2>Iniciando os testes</h2>
+            <p>
+              Após ja ter o ambiente do Goflash instalado e os arquivos do <code>Playwright</code>.<br>
+              É possivel iniciar os testes de duas formas, com o <code>Painel UI</code> ou pela <code>Extensão</code> do VsCode
+            </p>
+            <p>Os testes estão separados por modulos do Goflash POS, então cada arquivo é de um modulo especifico e dentro dentro dele há mais de 1 teste</p>
+            <p>Pela <code>Extensão</code> tem como testar teste por teste separadamente</p>
+            <p>Já pelo comando <code>Painel UI</code> há apenas como testar o arquivo todo, sendo um modulo inteiro</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">Painel UI</span>
+                <button class="copy-btn" onclick="copyCode(this, 'use-cmd-bash1')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="use-cmd-bash1"
+              ><span class="cmt"># Iniciar os testes com Painel UI</span>
+<span class="fn">npx</span> playwright test --ui
+            </div>
+
+            <h2>Testes Unitarios</h2>
+            <p>Para iniciarmos os testes separadamente, é necessario a extensão instalada no VSCode <code>Playwright Test for VSCode.</code></p>
+            <p>Após a instalação, terá um novo modulo na navbar do VSCode. Nela temos os modulos e em cada um é possivel iniciar cada teste.</p>
+
+            <h2>Testes Painel UI</h2>
+            <p>Para iniciar os testes pelo <code>Painel UI</code>, basta rodar o comando no terminal  </p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span>
+                <button class="copy-btn" onclick="copyCode(this, 'use-cmd-bash2')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="use-cmd"
+              ><span class="cmt"># Inicia o teste com o Painel.</span>
+<span class="fn">npx</span> playwright test --ui
+</pre>
+            </div>
+
+            <h2>Demais comandos playwright</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span>
+                <button class="copy-btn" onclick="copyCode(this, 'use-cmd-bash2')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="use-cmd"
+              ><span class="cmt"># Roda os testes end-to-end.</span>
+<span class="fn">npx</span> playwright test
+
+<span class="cmt"># Inicia o teste com o Painel.</span>
+<span class="fn">npx</span> playwright test --ui
+
+<span class="cmt"># Os testes são executados apenas no Chrome. </span>
+<span class="fn">npx</span> playwright test --project=chromium
+
+<span class="cmt"># Roda os testes de um arquivo especifico. </span>
+<span class="fn">npx</span> playwright test example
+
+<span class="cmt"># Executa os testes em modo de depuração.</span>
+<span class="fn">npx</span> playwright test --debug
+</pre>
+            </div>
+          </div>
+
+          <!-- ── Variáveis de Ambiente ── -->
+          <div class="page" id="page-variaveis">
+            <h1>Variáveis de Ambiente <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Todas as variáveis necessárias para configurar o ambiente.
+            </p>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                Copie o arquivo <code>example.config.ts</code> da raiz do projeto
+                para <code>config.ts</code> e preencha cada valor conforme descrito
+                abaixo.
+              </p>
+            </div>
+
+            <h2>Variáveis</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Variável</th>
+                  <th>Descrição</th>
+                  <th>Exemplo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>porta</code></td>
+                  <td>Numero da porta em que está o Goflash</td>
+                  <td><code>80</code></td>
+                </tr>
+                <tr>
+                  <td><code>usuario</code></td>
+                  <td>Usuario do Goflash para login/Preferencia de gerente</td>
+                  <td><code>Junior</code></td>
+                </tr>
+                <tr>
+                  <td><code>senha</code></td>
+                  <td>Senha do usuario para login</td>
+                  <td><code>12345678</code></td>
+                </tr>
+                <tr>
+                  <td><code>codProdutoBarra</code></td>
+                  <td>Código de um produto de barra para testes</td>
+                  <td><code>7890103788423</code></td>
+                </tr>
+                <tr>
+                  <td><code>cliente</code></td>
+                  <td>Nome de algum cliente que está cadastrado</td>
+                  <td><code>CLIENTE BALCAO - TORITAMA2</code></td>
+                </tr>
+                <tr>
+                  <td><code>cpf</code></td>
+                  <td>Algum CPF para poder realizar cadastro de cliente. Recomendado usar o gerador de CPF</td>
+                  <td><code>848.547.108-37</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── Visão Geral Testes ── -->
+          <div class="page" id="page-visao-geral-testes">
+            <h1>Testes — Goflash <span class="h1-tag">PLAYWRIGHT</span></h1>
+            <p class="page-subtitle">
+              Visão geral da suíte de testes automatizados E2E do Goflash.
+            </p>
+
+            <div class="callout success">
+              <span class="callout-icon">✅</span>
+              <p>
+                Todos os testes rodam nos browsers <code>chromium</code>,
+                <code>firefox</code> e <code>webkit</code>.
+              </p>
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                Há chances de correções ou atualizações serem implementadas mas não atualizadas nos codigos do manual. Mais Recomendado o uso dos codigos atualizados pelo repositório.
+              </p>
+            </div>
+
+            <h2>Testes disponíveis</h2>
+            <div class="test-grid">
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge e2e">Simples</span>
+                </div>
+                <h3>Teste de Login</h3>
+                <p>Valida o fluxo de autenticação.</p>
+                <div class="test-meta">
+                  <span>⏱ ~8s</span><span>📁 global.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge e2e">Simples</span>
+                </div>
+                <h3>Venda</h3>
+                <p>Realiza o processo de venda.</p>
+                <div class="test-meta">
+                  <span>⏱ ~22s</span><span>📁 venda.spec.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge smoke">Simples</span>
+                </div>
+                <h3>Troca</h3>
+                <p>Realiza o processo de troca.</p>
+                <div class="test-meta">
+                  <span>⏱ ~5s</span><span>📁 venda.spec.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge regression">simples</span>
+                </div>
+                <h3>Cancelamento</h3>
+                <p>Realiza o cancelamento seguindo o processo de modulo de venda </p>
+                <div class="test-meta">
+                  <span>⏱ ~2min</span><span>📁 venda.spec.ts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Teste Login ── -->
+          <div class="page" id="page-teste-login">
+            <h1>Teste: Login <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Testa o fluxo de autenticação com credenciais válidas.
+            </p>
+
+            <h2>O que este teste cobre</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">✓</div>
+                <div class="step-content">
+                  <h4>Login com credenciais válidas</h4>
+                  <p>
+                    Verifica redirecionamento para o dashboard após login
+                    correto.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2>Código do teste</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span>
+                <button
+                  class="copy-btn"
+                  onclick="copyCode(this, 'test-login-code')"
+                >
+                  copiar
+                </button>
+              </div>
+              <pre
+  id="test-login-code"
+><span class="kw">async</span> <span class="kw">function</span> <span class="fn">globalSetup</span>() {
+  console.<span class="fn">log</span>(<span class="str">"Iniciando login..."</span>);
+  <span class="kw">const</span> browser = <span class="kw">await</span> chromium.<span class="fn">launch</span>({ headless: <span class="kw">false</span>, slowMo: <span class="num">500</span> });
+  <span class="kw">const</span> context = <span class="kw">await</span> browser.<span class="fn">newContext</span>();
+  <span class="kw">const</span> page = <span class="kw">await</span> context.<span class="fn">newPage</span>();
+
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">"http://localhost:"</span> + config.porta);
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+
+  <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"Usuário"</span>).<span class="fn">fill</span>(config.usuario);
+  <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"senha"</span>).<span class="fn">fill</span>(config.senha);
+  <span class="kw">await</span> page.<span class="fn">getByRole</span>(<span class="str">"button"</span>, { name: <span class="str">"FAZER LOGIN"</span> }).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+
+  <span class="kw">await</span> context.<span class="fn">storageState</span>({ path: <span class="str">"auth.json"</span> });
+
+  <span class="kw">const</span> authJson = JSON.<span class="fn">parse</span>(fs.<span class="fn">readFileSync</span>(<span class="str">"auth.json"</span>, <span class="str">"utf-8"</span>));
+  authJson.cookies = authJson.cookies.<span class="fn">map</span>((<span class="fn">cookie</span>: <span class="kw">any</span>) => ({
+    ...cookie,
+    domain: <span class="str">"localhost"</span>,
+  }));
+  fs.<span class="fn">writeFileSync</span>(<span class="str">"auth.json"</span>, JSON.<span class="fn">stringify</span>(authJson, <span class="kw">null</span>, <span class="num">2</span>));
+
+  console.<span class="fn">log</span>(<span class="str">"✅ Login concluído!"</span>);
+  <span class="kw">await</span> browser.<span class="fn">close</span>();
+}</pre>
+            </div>
+
+            <h2>Executar este teste</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span
+                ><button class="copy-btn" onclick="copyCode(this, 'run-login')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="run-login"
+              ><span class="fn">npx</span> playwright test global.setup.ts --reporter=list</pre>
+            </div>
+
+            <div class="callout warning">
+              <span class="callout-icon">⚠️</span>
+              <p>
+                Esse teste sempre é rodado ao iniciar os demais testes. Então não é necessario rodar esse teste separadamente!
+              </p>
+            </div>
+          </div>
+
+          <!-- ── Teste Venda ── -->
+          <div class="page" id="page-teste-venda">
+            <h1>Teste: Venda <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Cobre o caminho do inicio ao fim de uma venda simples de apenas 1 produto.
+            </p>
+
+            <h2>Fluxo do teste</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>Login e acesso ao painel</h4>
+                  <p>Autenticação e verificação de elementos do dashboard.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>Nova Venda</h4>
+                  <p>
+                    Primeiramente verifica se já possui venda aberta, se tiver ele cancela essa venda pendente e inicia outra logo após.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h4>Preenchimento de campo</h4>
+                  <p>Localiza e preenche o campo de vendedor com o primeiro selecionado em seguida verifica se já está com cliente preenchido, se tiver ele ignora o campo mas se nao tiver ele preenche com o cliente que está na variavel.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <h4>Adição de produto</h4>
+                  <p>Adiciona o produto que está na variavel na venda.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                  <h4>Finalização da Venda</h4>
+                  <p>Realiza a finalização da venda, prosseguindo com os campos e colocando sempre como dinheiro.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">6</div>
+                <div class="step-content">
+                  <h4>Validação</h4>
+                  <p>Sistema verifica se irá aparecer que a venda foi gerada.</p>
+                </div>
+              </div>
+            </div>
+
+            <h2>Código do teste</h2>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span
+                ><button class="copy-btn" onclick="copyCode(this, 'test-venda-code')">
+                  copiar
+                </button>
+              </div>
+              <pre
+  id="test-venda-code"
+><span class="fn">test</span>(<span class="str">"Teste de Venda"</span>, <span class="kw">async</span> ({ page }) => {
+  test.<span class="fn">setTimeout</span>(<span class="num">0</span>);
+
+  <span class="cmt">//Acessa o site</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">"http://localhost:"</span> + config.porta);
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+
+  <span class="cmt">//Caso tenha o pop-up de tabela vencida</span>
+  <span class="kw">const</span> popupTributo = page.<span class="fn">getByTestId</span>(<span class="str">"closeModalTributoAproximado"</span>);
+
+  <span class="kw">if</span> (<span class="kw">await</span> popupTributo.<span class="fn">isVisible</span>()) {
+    <span class="kw">await</span> popupTributo.<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+  }
+
+  <span class="cmt">//Verifica se tem uma venda já aberta</span>
+  <span class="kw">const</span> temVendaAberta = <span class="kw">await</span> page
+    .<span class="fn">locator</span>(<span class="str">"#main-menu-venda-add p"</span>)
+    .<span class="fn">getByText</span>(<span class="str">"Retomar Venda"</span>)
+    .<span class="fn">nth</span>(<span class="num">1</span>)
+    .<span class="fn">isVisible</span>();
+
+  <span class="kw">if</span> (temVendaAberta) {
+    <span class="cmt">//Cancelando a venda pendente</span>
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'a[href="#/venda/add/"]'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+
+    <span class="kw">await</span> page
+      .<span class="fn">locator</span>(<span class="str">'[ng-click="cancelPedido()"]'</span>)
+      .<span class="fn">nth</span>(<span class="num">1</span>)
+      .<span class="fn">click</span>({ force: <span class="kw">true</span> });
+
+    <span class="cmt">//Preenchimento dos campos de cancelamento</span>
+    <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"Gerente"</span>).<span class="fn">fill</span>(config.usuario);
+    <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"senha"</span>).<span class="fn">fill</span>(config.senha);
+
+    <span class="cmt">//Seleciona o primeiro motivo</span>
+    <span class="kw">let</span> selectMotivo = page.<span class="fn">locator</span>(<span class="str">"select#motivos"</span>);
+    <span class="kw">await</span> selectMotivo.<span class="fn">selectOption</span>({ index: <span class="num">1</span> });
+
+    <span class="kw">await</span> page
+      .<span class="fn">getByPlaceholder</span>(<span class="str">"Motivo para autorização"</span>)
+      .<span class="fn">fill</span>(<span class="str">"Teste de cancelamento"</span>);
+
+    <span class="kw">await</span> page.<span class="fn">getByRole</span>(<span class="str">"button"</span>, { name: <span class="str">"SIM, AUTORIZAR"</span> }).<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+  } <span class="kw">else</span> {
+    <span class="cmt">//Abre uma nova venda</span>
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'a[href="#/venda/add/"]'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+  }
+
+  <span class="cmt">//Seleciona o vendedor</span>
+  <span class="kw">let</span> select = page.<span class="fn">locator</span>(<span class="str">"select#vendedor"</span>);
+  <span class="kw">await</span> select.<span class="fn">selectOption</span>({ index: <span class="num">1</span> });
+
+  <span class="cmt">//Verifica se o campo de cliente está preenchido</span>
+  <span class="kw">const</span> icone = page.<span class="fn">locator</span>(<span class="str">'i.material-icons[ng-click="limparCliente()"]'</span>);
+  <span class="kw">if</span> (<span class="kw">await</span> icone.<span class="fn">isVisible</span>()) {
+  } <span class="kw">else</span> {
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"#cliente"</span>).<span class="fn">fill</span>(config.cliente);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForSelector</span>(<span class="str">'[role="option"]'</span>, { state: <span class="str">"visible"</span> });
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[role="option"] a'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">500</span>);
+  }
+
+  <span class="cmt">//Coloca o produto</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"#codigo-barras"</span>).<span class="fn">fill</span>(config.codProdutoBarra);
+  <span class="kw">await</span> page.keyboard.<span class="fn">press</span>(<span class="str">"Enter"</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+
+  <span class="cmt">//Pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">waitForSelector</span>(<span class="str">'a p:has-text("Pagamento")'</span>, { state: <span class="str">"visible"</span> });
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-hide="isPreVenda() || caixaAberto()"]'</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">500</span>);
+
+  <span class="cmt">//Seleciona forma de pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"label"</span>).<span class="fn">getByText</span>(<span class="str">"DINHEIRO"</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+
+  <span class="cmt">//Confirmar pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="confirmarpagamentoTroco()"]'</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+
+  <span class="cmt">//Confirmar</span>
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="finishPedido(state.ImprimeDanfe)"]'</span>).<span class="fn">click</span>();
+
+  <span class="cmt">//Espera o popup de êxito aparecer, se demorar 2m ele dá como errado</span>
+  <span class="kw">await</span> <span class="fn">expect</span>(page.<span class="fn">getByText</span>(<span class="str">"Ticket gerado com êxito"</span>)).<span class="fn">toBeVisible</span>({
+    timeout: <span class="num">120000</span>,
+  });
+});</pre>
+            </div>
+          </div>
+
+          <!-- ── Teste Troca ── -->
+          <div class="page" id="page-teste-troca">
+            <h1>Teste: Troca <span class="h1-tag">GOFLASH</span></h1>
+            <p class="page-subtitle">
+              Verifica disponibilidade, contratos e respostas das rotas REST.
+            </p>
+
+            <h2>Endpoints testados</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Método</th>
+                  <th>Rota</th>
+                  <th>Teste</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>GET</code></td>
+                  <td><code>/api/health</code></td>
+                  <td>Status 200 + body <code>{ok: true}</code></td>
+                </tr>
+                <tr>
+                  <td><code>POST</code></td>
+                  <td><code>/api/auth/login</code></td>
+                  <td>Retorna token JWT válido</td>
+                </tr>
+                <tr>
+                  <td><code>GET</code></td>
+                  <td><code>/api/integracoes</code></td>
+                  <td>Array paginado no formato correto</td>
+                </tr>
+                <tr>
+                  <td><code>POST</code></td>
+                  <td><code>/api/integracoes</code></td>
+                  <td>Cria e retorna novo recurso com ID</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span
+                ><button class="copy-btn" onclick="copyCode(this, 'test-troca-code')">
+                  copiar
+                </button>
+              </div>
+              <pre
+  id="test-troca-code"
+><span class="fn">test</span>(<span class="str">"Teste de Troca"</span>, <span class="kw">async</span> ({ page }) => {
+  test.<span class="fn">setTimeout</span>(<span class="num">0</span>);
+
+  <span class="cmt">//Acessa o site</span>
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">"http://localhost:"</span> + config.porta);
+  <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+
+  <span class="cmt">//Caso tenha o pop-up de tabela vencida</span>
+  <span class="kw">const</span> popupTributo = page.<span class="fn">getByTestId</span>(<span class="str">"closeModalTributoAproximado"</span>);
+
+  <span class="kw">if</span> (<span class="kw">await</span> popupTributo.<span class="fn">isVisible</span>()) {
+    <span class="kw">await</span> popupTributo.<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+  }
+
+  <span class="cmt">//Verifica se tem uma venda já aberta</span>
+  <span class="kw">const</span> temVendaAberta = <span class="kw">await</span> page
+    .<span class="fn">locator</span>(<span class="str">"#main-menu-venda-add p"</span>)
+    .<span class="fn">getByText</span>(<span class="str">"Retomar Venda"</span>)
+    .<span class="fn">nth</span>(<span class="num">1</span>)
+    .<span class="fn">isVisible</span>();
+
+  <span class="kw">if</span> (temVendaAberta) {
+    <span class="cmt">//Cancelando a venda pendente</span>
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'a[href="#/venda/add/"]'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+
+    <span class="kw">await</span> page
+      .<span class="fn">locator</span>(<span class="str">'[ng-click="cancelPedido()"]'</span>)
+      .<span class="fn">nth</span>(<span class="num">1</span>)
+      .<span class="fn">click</span>({ force: <span class="kw">true</span> });
+
+    <span class="cmt">//Preenchimento dos campos de cancelamento</span>
+    <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"Gerente"</span>).<span class="fn">fill</span>(config.usuario);
+    <span class="kw">await</span> page.<span class="fn">getByPlaceholder</span>(<span class="str">"senha"</span>).<span class="fn">fill</span>(config.senha);
+
+    <span class="cmt">//Seleciona o primeiro motivo</span>
+    <span class="kw">let</span> selectMotivo = page.<span class="fn">locator</span>(<span class="str">"select#motivos"</span>);
+    <span class="kw">await</span> selectMotivo.<span class="fn">selectOption</span>({ index: <span class="num">1</span> });
+
+    <span class="cmt">//Preenchimento do Motivo</span>
+    <span class="kw">await</span> page
+      .<span class="fn">getByPlaceholder</span>(<span class="str">"Motivo para autorização"</span>)
+      .<span class="fn">fill</span>(<span class="str">"Teste de cancelamento"</span>);
+
+    <span class="cmt">//Confirmar</span>
+    <span class="kw">await</span> page.<span class="fn">getByRole</span>(<span class="str">"button"</span>, { name: <span class="str">"SIM, AUTORIZAR"</span> }).<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+  } <span class="kw">else</span> {
+    <span class="cmt">//Abre uma nova venda</span>
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'a[href="#/venda/add/"]'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForLoadState</span>(<span class="str">"networkidle"</span>);
+  }
+
+  <span class="cmt">//Seleciona o vendedor</span>
+  <span class="kw">let</span> select = page.<span class="fn">locator</span>(<span class="str">"select#vendedor"</span>);
+  <span class="kw">await</span> select.<span class="fn">selectOption</span>({ index: <span class="num">1</span> });
+
+  <span class="cmt">//Verifica se o campo de cliente está preenchido</span>
+  <span class="kw">const</span> icone = page.<span class="fn">locator</span>(<span class="str">'i.material-icons[ng-click="limparCliente()"]'</span>);
+  <span class="kw">if</span> (<span class="kw">await</span> icone.<span class="fn">isVisible</span>()) {
+    console.<span class="fn">log</span>(<span class="str">"ta com cliente"</span>);
+  } <span class="kw">else</span> {
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"#cliente"</span>).<span class="fn">fill</span>(config.cliente);
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+    <span class="kw">await</span> page.<span class="fn">waitForSelector</span>(<span class="str">'[role="option"]'</span>, { state: <span class="str">"visible"</span> });
+    <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[role="option"] a'</span>).<span class="fn">first</span>().<span class="fn">click</span>();
+    <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">500</span>);
+  }
+
+  <span class="cmt">//Coloca o produto</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"#codigo-barras"</span>).<span class="fn">fill</span>(config.codProdutoBarra);
+  <span class="kw">await</span> page.keyboard.<span class="fn">press</span>(<span class="str">"Enter"</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+
+  <span class="cmt">//Coloca produto da troca</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="toggleTroca()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"#codigo-barras"</span>).<span class="fn">fill</span>(config.codProdutoBarra);
+  <span class="kw">await</span> page.keyboard.<span class="fn">press</span>(<span class="str">"Enter"</span>);
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(tempoEspera);
+
+  <span class="cmt">//Pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-hide="isPreVenda() || caixaAberto()"]'</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">500</span>);
+
+  <span class="cmt">//Seleciona forma de pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">"label"</span>).<span class="fn">getByText</span>(<span class="str">"DINHEIRO"</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+
+  <span class="cmt">//Confirmar pagamento</span>
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="confirmarpagamentoTroco()"]'</span>).<span class="fn">click</span>();
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="gotoNextPagamento()"]'</span>).<span class="fn">nth</span>(<span class="num">1</span>).<span class="fn">click</span>();
+
+  <span class="cmt">//Confirmar</span>
+  <span class="kw">await</span> page.<span class="fn">waitForTimeout</span>(<span class="num">1000</span>);
+  <span class="kw">await</span> page.<span class="fn">locator</span>(<span class="str">'[ng-click="finishPedido(state.ImprimeDanfe)"]'</span>).<span class="fn">click</span>();
+
+  <span class="cmt">//Espera o popup de êxito aparecer, se demorar 2m ele dá como errado</span>
+  <span class="kw">await</span> <span class="fn">expect</span>(page.<span class="fn">getByText</span>(<span class="str">"Ticket gerado com êxito"</span>)).<span class="fn">toBeVisible</span>({
+    timeout: <span class="num">120000</span>,
+  });
+});</pre>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>

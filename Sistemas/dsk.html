@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QaDocs — DSK</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* accent override: verde */
+      :root {
+        --sys-accent: #3fe0a0;
+      }
+      .sidebar-item.active {
+        background: rgba(63, 224, 160, 0.06);
+        border-left-color: #3fe0a0;
+        color: #3fe0a0;
+      }
+      .sidebar-item.active .item-dot {
+        background: #3fe0a0;
+      }
+      .page h1 .h1-tag {
+        color: #3fe0a0;
+        background: rgba(63, 224, 160, 0.1);
+        border-color: rgba(63, 224, 160, 0.2);
+      }
+      .step-num {
+        color: #3fe0a0;
+      }
+      .page h2::before {
+        background: #3fe0a0;
+      }
+      .code-header .lang {
+        color: #3fe0a0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="manual">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <a class="topbar-logo" href="../index.html">
+          <div class="logo-icon">
+            <img src="../Files/DskIcone.ico" alt="DSK" />
+          </div>
+          <span class="logo-text">DSK</span>
+        </a>
+        <div class="topbar-nav">
+          <span>QaDocs</span>
+          <span class="sep">/</span>
+          <span class="crumb" id="topbar-crumb">Como Instalar</span>
+        </div>
+        <a class="topbar-back" href="../index.html">← Sistemas</a>
+      </div>
+
+      <div class="manual-body">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <div class="sidebar-section open" id="sec-install">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('install')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">📦</span>
+              <span class="section-label">Instalação</span>
+              <span class="section-count">2</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item active"
+                onclick="showPage('como-instalar', this)"
+                data-label="Como Instalar"
+              >
+                <span class="item-dot"></span>Como Instalar
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('como-usar', this)"
+                data-label="Como Usar"
+              >
+                <span class="item-dot"></span>Como Usar
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section open" id="sec-config">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('config')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">🔧</span>
+              <span class="section-label">Configuração</span>
+              <span class="section-count">2</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item"
+                onclick="showPage('variaveis', this)"
+                data-label="Variáveis de Ambiente"
+              >
+                <span class="item-dot"></span>Variáveis de Ambiente
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('dependencias', this)"
+                data-label="Dependências"
+              >
+                <span class="item-dot"></span>Dependências
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-section open" id="sec-tests">
+            <div
+              class="sidebar-section-header"
+              onclick="toggleSection('tests')"
+            >
+              <span class="section-chevron">▶</span>
+              <span class="section-icon">🧪</span>
+              <span class="section-label">Testes</span>
+              <span class="section-count">4</span>
+            </div>
+            <div class="sidebar-items">
+              <div
+                class="sidebar-item"
+                onclick="showPage('visao-geral-testes', this)"
+                data-label="Visão Geral"
+              >
+                <span class="item-dot"></span>Visão Geral
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-login', this)"
+                data-label="Teste: Login"
+              >
+                <span class="item-dot"></span>Teste: Login
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-fluxo', this)"
+                data-label="Teste: Fluxo Principal"
+              >
+                <span class="item-dot"></span>Teste: Fluxo Principal
+              </div>
+              <div
+                class="sidebar-item"
+                onclick="showPage('teste-api', this)"
+                data-label="Teste: API Endpoints"
+              >
+                <span class="item-dot"></span>Teste: API Endpoints
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="content">
+          <!-- ── Como Instalar ── -->
+          <div class="page active" id="page-como-instalar">
+            <h1>Como Instalar <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Guia de instalação passo a passo para o ambiente local e produção.
+            </p>
+
+            <h2>Pré-requisitos</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Ferramenta</th>
+                  <th>Versão mínima</th>
+                  <th>Verificar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>Node.js</code></td>
+                  <td>18.x ou superior</td>
+                  <td><code>node -v</code></td>
+                </tr>
+                <tr>
+                  <td><code>npm</code> / <code>pnpm</code></td>
+                  <td>9.x</td>
+                  <td><code>npm -v</code></td>
+                </tr>
+                <tr>
+                  <td><code>Git</code></td>
+                  <td>2.x</td>
+                  <td><code>git --version</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Passo a passo</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>Clone o repositório</h4>
+                  <p>Faça o clone do projeto DSK para sua máquina local.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>Instale as dependências</h4>
+                  <p>Execute o gerenciador de pacotes na raiz do projeto.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h4>Configure as variáveis de ambiente</h4>
+                  <p>
+                    Copie o <code>.env.example</code> para <code>.env</code> e
+                    preencha os valores.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <h4>Inicie o servidor</h4>
+                  <p>
+                    Execute o comando de start e acesse
+                    <code>localhost:3000</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span
+                ><button class="copy-btn" onclick="copyCode(this, 'clone-cmd')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="clone-cmd"
+              ><span class="cmt"># 1. Clone o repositório</span>
+<span class="fn">git</span> clone https://github.com/b2u/dsk.git
+<span class="fn">cd</span> dsk
+
+<span class="cmt"># 2. Instale as dependências</span>
+<span class="fn">npm</span> install
+
+<span class="cmt"># 3. Copie o arquivo de ambiente</span>
+<span class="fn">cp</span> .env.example .env
+
+<span class="cmt"># 4. Inicie o servidor</span>
+<span class="fn">npm</span> run dev</pre>
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                O servidor iniciará na porta <code>3000</code> por padrão. Para
+                alterar, defina <code>PORT=XXXX</code> no arquivo
+                <code>.env</code>.
+              </p>
+            </div>
+            <div class="callout warning">
+              <span class="callout-icon">⚠️</span>
+              <p>
+                Nunca compartilhe o arquivo <code>.env</code> nem o commite no
+                repositório.
+              </p>
+            </div>
+          </div>
+
+          <!-- ── Como Usar ── -->
+          <div class="page" id="page-como-usar">
+            <h1>Como Usar <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Fluxos básicos e avançados para o serviço de pedidos DSK.
+            </p>
+
+            <h2>Acesso ao sistema</h2>
+            <p>
+              Após a instalação, acesse o sistema via navegador em
+              <code>http://localhost:3000</code>.
+            </p>
+
+            <h2>Principais funcionalidades</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">→</div>
+                <div class="step-content">
+                  <h4>Gerenciamento de Pedidos</h4>
+                  <p>
+                    Criação, edição e acompanhamento de pedidos em tempo real.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">→</div>
+                <div class="step-content">
+                  <h4>Histórico de Transações</h4>
+                  <p>
+                    Consulte o histórico completo de pedidos com filtros
+                    avançados.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">→</div>
+                <div class="step-content">
+                  <h4>Notificações</h4>
+                  <p>
+                    Alertas automáticos via e-mail e webhook para mudanças de
+                    status.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2>Comandos úteis</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span
+                ><button class="copy-btn" onclick="copyCode(this, 'use-cmd')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="use-cmd"
+              ><span class="cmt"># Iniciar em modo produção</span>
+<span class="fn">npm</span> run start
+
+<span class="cmt"># Build do projeto</span>
+<span class="fn">npm</span> run build
+
+<span class="cmt"># Verificar logs</span>
+<span class="fn">npm</span> run logs</pre>
+            </div>
+          </div>
+
+          <!-- ── Variáveis de Ambiente ── -->
+          <div class="page" id="page-variaveis">
+            <h1>Variáveis de Ambiente <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Todas as variáveis necessárias para configurar o ambiente do DSK.
+            </p>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                Copie o arquivo <code>.env.example</code> para
+                <code>.env</code> e preencha cada valor.
+              </p>
+            </div>
+
+            <h2>Variáveis obrigatórias</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Variável</th>
+                  <th>Descrição</th>
+                  <th>Exemplo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>DATABASE_URL</code></td>
+                  <td>String de conexão com o banco</td>
+                  <td><code>postgres://user:pass@host/db</code></td>
+                </tr>
+                <tr>
+                  <td><code>API_SECRET</code></td>
+                  <td>Chave para assinatura de tokens JWT</td>
+                  <td><code>my-secret-key</code></td>
+                </tr>
+                <tr>
+                  <td><code>PORT</code></td>
+                  <td>Porta do servidor</td>
+                  <td><code>3000</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Variáveis opcionais</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Variável</th>
+                  <th>Descrição</th>
+                  <th>Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>LOG_LEVEL</code></td>
+                  <td>Nível de log</td>
+                  <td><code>info</code></td>
+                </tr>
+                <tr>
+                  <td><code>WEBHOOK_URL</code></td>
+                  <td>URL para notificações de pedido</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── Dependências ── -->
+          <div class="page" id="page-dependencias">
+            <h1>Dependências <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Bibliotecas e serviços externos dos quais o DSK depende.
+            </p>
+
+            <h2>Produção</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Pacote</th>
+                  <th>Versão</th>
+                  <th>Finalidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>express</code></td>
+                  <td>^4.18</td>
+                  <td>Framework HTTP</td>
+                </tr>
+                <tr>
+                  <td><code>prisma</code></td>
+                  <td>^5.x</td>
+                  <td>ORM</td>
+                </tr>
+                <tr>
+                  <td><code>bull</code></td>
+                  <td>^4.x</td>
+                  <td>Fila de processamento</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Desenvolvimento</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Pacote</th>
+                  <th>Versão</th>
+                  <th>Finalidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>playwright</code></td>
+                  <td>^1.44</td>
+                  <td>Testes E2E</td>
+                </tr>
+                <tr>
+                  <td><code>typescript</code></td>
+                  <td>^5.x</td>
+                  <td>Type safety</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ── Visão Geral Testes ── -->
+          <div class="page" id="page-visao-geral-testes">
+            <h1>Testes — DSK <span class="h1-tag">PLAYWRIGHT</span></h1>
+            <p class="page-subtitle">
+              Visão geral da suíte de testes automatizados do serviço de
+              pedidos.
+            </p>
+
+            <h2>Sobre a suíte</h2>
+            <p>
+              Os testes cobrem criação, edição e status de pedidos usando
+              <strong>Playwright</strong>.
+            </p>
+
+            <div class="callout success">
+              <span class="callout-icon">✅</span>
+              <p>
+                Todos os testes rodam nos browsers <code>chromium</code>,
+                <code>firefox</code> e <code>webkit</code>.
+              </p>
+            </div>
+
+            <h2>Instalando o Playwright</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span
+                ><button
+                  class="copy-btn"
+                  onclick="copyCode(this, 'pw-install')"
+                >
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="pw-install"
+              ><span class="cmt"># Instalar Playwright e browsers</span>
+<span class="fn">npx</span> playwright install
+
+<span class="cmt"># Rodar todos os testes</span>
+<span class="fn">npx</span> playwright test
+
+<span class="cmt"># Rodar com interface visual</span>
+<span class="fn">npx</span> playwright test --ui</pre>
+            </div>
+
+            <h2>Testes disponíveis</h2>
+            <div class="test-grid">
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge e2e">E2E</span>
+                </div>
+                <h3>Teste de Login</h3>
+                <p>Valida o fluxo de autenticação do DSK.</p>
+                <div class="test-meta">
+                  <span>⏱ ~8s</span><span>📁 login.spec.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge e2e">E2E</span>
+                </div>
+                <h3>Criação de Pedido</h3>
+                <p>Cobre o fluxo completo de criação de pedido.</p>
+                <div class="test-meta">
+                  <span>⏱ ~18s</span><span>📁 pedido.spec.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge smoke">SMOKE</span>
+                </div>
+                <h3>API Endpoints</h3>
+                <p>Verifica disponibilidade das rotas REST.</p>
+                <div class="test-meta">
+                  <span>⏱ ~5s</span><span>📁 api.spec.ts</span>
+                </div>
+              </div>
+              <div class="test-card">
+                <div class="test-card-top">
+                  <span class="test-badge regression">REGRESSION</span>
+                </div>
+                <h3>Regressão Geral</h3>
+                <p>Suite completa antes de cada deploy.</p>
+                <div class="test-meta">
+                  <span>⏱ ~2min</span><span>📁 regression/</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Teste Login ── -->
+          <div class="page" id="page-teste-login">
+            <h1>Teste: Login <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Testa o fluxo de autenticação com credenciais válidas e inválidas.
+            </p>
+
+            <h2>O que este teste cobre</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">✓</div>
+                <div class="step-content">
+                  <h4>Login com credenciais válidas</h4>
+                  <p>
+                    Verifica redirecionamento para o dashboard após login
+                    correto.
+                  </p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">✓</div>
+                <div class="step-content">
+                  <h4>Mensagem de erro com credenciais inválidas</h4>
+                  <p>Garante que o sistema exibe feedback de erro adequado.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">✓</div>
+                <div class="step-content">
+                  <h4>Persistência de sessão</h4>
+                  <p>
+                    Valida que o token é salvo e a sessão permanece após reload.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h2>Código do teste</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span
+                ><button
+                  class="copy-btn"
+                  onclick="copyCode(this, 'test-login-code')"
+                >
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="test-login-code"
+              ><span class="kw">import</span> { test, expect } <span class="kw">from</span> <span class="str">'@playwright/test'</span>;
+
+test.<span class="fn">describe</span>(<span class="str">'DSK — Autenticação'</span>, () => {
+
+  test(<span class="str">'login com credenciais válidas'</span>, <span class="kw">async</span> ({ page }) => {
+    <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'/login'</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=email]'</span>, <span class="str">'admin@empresa.com'</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=password]'</span>, <span class="str">'senha123'</span>);
+    <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type=submit]'</span>);
+    <span class="kw">await</span> expect(page).<span class="fn">toHaveURL</span>(<span class="str">'/dashboard'</span>);
+  });
+
+  test(<span class="str">'exibe erro com credenciais inválidas'</span>, <span class="kw">async</span> ({ page }) => {
+    <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'/login'</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=email]'</span>, <span class="str">'wrong@email.com'</span>);
+    <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=password]'</span>, <span class="str">'errado'</span>);
+    <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type=submit]'</span>);
+    <span class="kw">await</span> expect(page.<span class="fn">locator</span>(<span class="str">'.error-msg'</span>)).<span class="fn">toBeVisible</span>();
+  });
+
+});</pre>
+            </div>
+
+            <h2>Executar este teste</h2>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">BASH</span
+                ><button class="copy-btn" onclick="copyCode(this, 'run-login')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="run-login"
+              ><span class="fn">npx</span> playwright test tests/login.spec.ts --reporter=list</pre>
+            </div>
+          </div>
+
+          <!-- ── Teste Fluxo ── -->
+          <div class="page" id="page-teste-fluxo">
+            <h1>Teste: Fluxo Principal <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Cobre o fluxo completo de pedidos do início ao fim.
+            </p>
+
+            <h2>Cenários cobertos</h2>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <h4>Login e acesso ao painel</h4>
+                  <p>Autenticação e verificação do dashboard de pedidos.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <h4>Criação de novo pedido</h4>
+                  <p>Preenche formulário de pedido e valida criação.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <h4>Alteração de status</h4>
+                  <p>Atualiza o status do pedido e confirma mudança.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <h4>Exportação de histórico</h4>
+                  <p>Exporta relatório de pedidos e valida download.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span
+                ><button class="copy-btn" onclick="copyCode(this, 'flow-code')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="flow-code"
+              ><span class="kw">import</span> { test, expect } <span class="kw">from</span> <span class="str">'@playwright/test'</span>;
+
+test(<span class="str">'fluxo principal DSK — pedido'</span>, <span class="kw">async</span> ({ page }) => {
+  <span class="kw">await</span> page.<span class="fn">goto</span>(<span class="str">'/login'</span>);
+  <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=email]'</span>, process.env.<span class="num">TEST_USER</span>);
+  <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=password]'</span>, process.env.<span class="num">TEST_PASS</span>);
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'button[type=submit]'</span>);
+
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'text=Novo Pedido'</span>);
+  <span class="kw">await</span> page.<span class="fn">fill</span>(<span class="str">'[name=descricao]'</span>, <span class="str">'Pedido de Teste'</span>);
+  <span class="kw">await</span> page.<span class="fn">click</span>(<span class="str">'text=Confirmar'</span>);
+
+  <span class="kw">await</span> expect(page.<span class="fn">locator</span>(<span class="str">'text=Pedido de Teste'</span>))
+    .<span class="fn">toBeVisible</span>();
+});</pre>
+            </div>
+          </div>
+
+          <!-- ── Teste API ── -->
+          <div class="page" id="page-teste-api">
+            <h1>Teste: API Endpoints <span class="h1-tag">DSK</span></h1>
+            <p class="page-subtitle">
+              Verifica disponibilidade, contratos e respostas das rotas REST do
+              DSK.
+            </p>
+
+            <h2>Endpoints testados</h2>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Método</th>
+                  <th>Rota</th>
+                  <th>Teste</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>GET</code></td>
+                  <td><code>/api/health</code></td>
+                  <td>Status 200 + body <code>{ok: true}</code></td>
+                </tr>
+                <tr>
+                  <td><code>POST</code></td>
+                  <td><code>/api/auth/login</code></td>
+                  <td>Retorna token JWT válido</td>
+                </tr>
+                <tr>
+                  <td><code>GET</code></td>
+                  <td><code>/api/pedidos</code></td>
+                  <td>Array paginado no formato correto</td>
+                </tr>
+                <tr>
+                  <td><code>POST</code></td>
+                  <td><code>/api/pedidos</code></td>
+                  <td>Cria e retorna novo pedido com ID</td>
+                </tr>
+                <tr>
+                  <td><code>PATCH</code></td>
+                  <td><code>/api/pedidos/:id</code></td>
+                  <td>Atualiza status e retorna pedido atualizado</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="lang">TYPESCRIPT</span
+                ><button class="copy-btn" onclick="copyCode(this, 'api-code')">
+                  copiar
+                </button>
+              </div>
+              <pre
+                id="api-code"
+              ><span class="kw">import</span> { test, expect } <span class="kw">from</span> <span class="str">'@playwright/test'</span>;
+
+test(<span class="str">'GET /api/pedidos retorna lista'</span>, <span class="kw">async</span> ({ request }) => {
+  <span class="kw">const</span> res = <span class="kw">await</span> request.<span class="fn">get</span>(<span class="str">'/api/pedidos'</span>);
+  <span class="kw">await</span> expect(res).<span class="fn">toBeOK</span>();
+  <span class="kw">const</span> body = <span class="kw">await</span> res.<span class="fn">json</span>();
+  expect(Array.<span class="fn">isArray</span>(body.data)).<span class="fn">toBe</span>(<span class="kw">true</span>);
+});</pre>
+            </div>
+
+            <div class="callout info">
+              <span class="callout-icon">ℹ️</span>
+              <p>
+                Os testes de API usam o <code>APIRequestContext</code> do
+                Playwright, sem precisar abrir um browser.
+              </p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>
