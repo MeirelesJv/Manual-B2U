@@ -454,8 +454,40 @@
                   <td>Algum CPF para poder realizar cadastro de cliente. Recomendado usar o gerador de CPF</td>
                   <td><code>848.547.108-37</code></td>
                 </tr>
+                <tr>
+                  <td><code>user</code></td>
+                  <td>Usuario para acessar o banco de dados em que será utilizado o Goflash POS</td>
+                  <td><code>sa</code></td>
+                </tr>
+                <tr>
+                  <td><code>password</code></td>
+                  <td>Senha do usuario para acessar o banco de dados</td>
+                  <td><code>123</code></td>
+                </tr>
+                <tr>
+                  <td><code>database</code></td>
+                  <td>Nome do banco de dados</td>
+                  <td><code>loja_Ibirapuera</code></td>
+                </tr>
+                <tr>
+                  <td><code>server</code></td>
+                  <td>Conexão para acessar o SQL</td>
+                  <td><code>localhost</code></td>
+                </tr>
               </tbody>
             </table>
+
+            <h2>Possiveis erros e suas soluções</h2>
+            <div class="step">
+                <div class="step-num">!</div>
+                <div class="step-content">
+                  <h4>Failed to connect</h4>
+                  <p>
+                    Caso inicie algum teste que utilize alguma querie no banco, é necessario ter o TCP/IP do SQL habilitado.
+                  </p>
+                  <p>Para resolver basta habilitar pelo Sql Server Configuration Manager -> Configuração de Rede do SQL Server</p>
+                </div>
+              </div>
           </div>
 
           <!-- ── Visão Geral Testes ── -->
