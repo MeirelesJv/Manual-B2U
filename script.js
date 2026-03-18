@@ -48,3 +48,17 @@ function copyCode(btn, id) {
     }, 1800);
   });
 }
+
+/* ─── LIGHTBOX ────────────────────────────────────── */
+function openLightbox(img) {
+  document.getElementById("lightbox-img").src = img.src;
+  document.getElementById("lightbox").classList.add("open");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLightbox();
+});

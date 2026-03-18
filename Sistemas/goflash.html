@@ -310,46 +310,62 @@
                 <div class="step-content">
                   <h4>Configure as variáveis de ambiente</h4>
                   <p>
-                    Copie o <code>.env.example</code> para <code>.env</code> e
+                    Copie o <code>example.config.ts</code> para <code>config.ts</code> e
                     preencha os valores.
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div class="code-block">
-              <div class="code-header">
-                <span class="lang">BASH</span>
-                <button class="copy-btn" onclick="copyCode(this, 'clone-cmd')">
-                  copiar
-                </button>
               </div>
-              <pre
-                id="clone-cmd"
-              ><span class="cmt"># 1. Clone o repositório</span>
-<span class="fn">git</span> clone https://github.com/b2u/goflash.git
-<span class="fn">cd</span> goflash
+              <div class="code-block">
+                <div class="code-header">
+                  <span class="lang">BASH 4</span>
+                  <button class="copy-btn" onclick="copyCode(this, 'clone-cmd')">
+                    copiar
+                  </button>
+                </div>
+                <pre
+                  id="clone-cmd"
+                >  <span class="cmt"># 1. Clone o repositório</span>
+  <span class="fn">git</span> clone https://github.com/b2u/goflash.git
+  <span class="fn">cd</span> goflash
 
-<span class="cmt"># 2. Instale as dependências</span>
-<span class="fn">npm</span> install
+  <span class="cmt"># 2. Instale as dependências</span>
+  <span class="fn">npm</span> install
 
-<span class="cmt"># 3. Copie o arquivo de ambiente</span>
-<span class="fn">cp</span> example.global.ts global.ts
-            </div>
+  <span class="cmt"># 3. Instale o playwright</span>
+  <span class="fn">npm</span> playwright install
 
-            <div class="callout info">
-              <span class="callout-icon">ℹ️</span>
-              <p>
-                O servidor iniciará na porta <code>3000</code> por padrão. Para
-                alterar, defina <code>PORT=XXXX</code> no arquivo
-                <code>.env</code>.
-              </p>
-            </div>
+  <span class="cmt"># 4. Copie o arquivo de ambiente</span>
+  <span class="fn">cp</span> example.config.ts config.ts
+              </div>
+
             <div class="callout warning">
               <span class="callout-icon">⚠️</span>
               <p>
-                Não se esqueça de preencher todo o <code>.env</code> alem de não se esquecer de colocar o ambiente todo em homolog
+                Não se esqueça de preencher todo o <code>config.ts</code> alem de não se esquecer de colocar o ambiente todo em homolog
               </p>
+            </div>
+            <h2>Possiveis erros e suas soluções</h2>
+            <div class="step">
+                <div class="step-num">!</div>
+                <div class="step-content">
+                  <h4>Failed to connect</h4>
+                  <p>
+                    Caso inicie algum teste que utilize alguma querie no banco, é necessario ter o TCP/IP do SQL habilitado.
+                  </p>
+                  <p>Para resolver basta habilitar pelo Sql Server Configuration Manager -> Configuração de Rede do SQL Server</p>
+                </div>
+            </div>
+            <br>
+            <div class="step">
+                <div class="step-num">!</div>
+                <div class="step-content">
+                  <h4>UnauthorizedAccess terminal vscode</h4>
+                  <p>
+                    Há chances de ao fazer algum comando no terminal do VsCode, ele de um erro de acesso nao autorizado
+                  </p>
+                  <p>Para resolver, basta iniciar o Powershell como adm e rodar o seguinte comando <code>Set-ExecutionPolicy –ExecutionPolicy RemoteSigned</code></p>
+                </div>
             </div>
           </div>
 
@@ -384,6 +400,15 @@
             <h2>Testes Unitarios</h2>
             <p>Para iniciarmos os testes separadamente, é necessario a extensão instalada no VSCode <code>Playwright Test for VSCode.</code></p>
             <p>Após a instalação, terá um novo modulo na navbar do VSCode. Nela temos os modulos e em cada um é possivel iniciar cada teste.</p>
+            <div class="img-block">
+  <img src="../Files/print_comoUsar_vscode.png " alt="Print 1" class="zoomable" onclick="openLightbox(this)" style="--img-w: 60%"/>
+  <span class="img-caption">Modulo do Playwright</span>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
 
             <h2>Testes Painel UI</h2>
             <p>Para iniciar os testes pelo <code>Painel UI</code>, basta rodar o comando no terminal  </p>
@@ -458,11 +483,11 @@
                 <tr>
                   <td><code>porta</code></td>
                   <td>Numero da porta em que está o Goflash</td>
-                  <td><code>80</code></td>
+                  <td><code>80</code><code>90</code></td>
                 </tr>
                 <tr>
                   <td><code>usuario</code></td>
-                  <td>Usuario do Goflash para login/Preferencia de gerente</td>
+                  <td>Usuario do Goflash para login. Preferencia de gerente</td>
                   <td><code>Junior</code></td>
                 </tr>
                 <tr>
@@ -472,18 +497,13 @@
                 </tr>
                 <tr>
                   <td><code>codProdutoBarra</code></td>
-                  <td>Código de um produto de barra para testes</td>
+                  <td>Código de um produto de barra para testes em casos especifios</td>
                   <td><code>7890103788423</code></td>
                 </tr>
                 <tr>
                   <td><code>cliente</code></td>
                   <td>Nome de algum cliente que está cadastrado</td>
                   <td><code>CLIENTE BALCAO - TORITAMA2</code></td>
-                </tr>
-                <tr>
-                  <td><code>cpf</code></td>
-                  <td>Algum CPF para poder realizar cadastro de cliente. Recomendado usar o gerador de CPF</td>
-                  <td><code>848.547.108-37</code></td>
                 </tr>
                 <tr>
                   <td><code>user</code></td>
@@ -507,18 +527,6 @@
                 </tr>
               </tbody>
             </table>
-
-            <h2>Possiveis erros e suas soluções</h2>
-            <div class="step">
-                <div class="step-num">!</div>
-                <div class="step-content">
-                  <h4>Failed to connect</h4>
-                  <p>
-                    Caso inicie algum teste que utilize alguma querie no banco, é necessario ter o TCP/IP do SQL habilitado.
-                  </p>
-                  <p>Para resolver basta habilitar pelo Sql Server Configuration Manager -> Configuração de Rede do SQL Server</p>
-                </div>
-              </div>
           </div>
 
           <!-- ── Visão Geral Testes ── -->
