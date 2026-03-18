@@ -62,3 +62,9 @@ function closeLightbox() {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
 });
+
+/* ─── GRUPO COM SUBMENU ───────────────────────────── */
+function toggleGroup(id) {
+  const group = document.getElementById("group-" + id);
+  if (group) group.classList.toggle("open");
+}
